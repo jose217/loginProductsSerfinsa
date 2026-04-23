@@ -1,0 +1,109 @@
+<div class="layout">
+  <header class="header">
+    <div class="header-content">
+      <a routerLink="/products" class="back-link">← Volver a Productos</a>
+      <h1>{{ isEditMode ? 'Editar Producto' : 'Nuevo Producto' }}</h1>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="form-card">
+      @if (errorMessage) {
+        <div class="alert-error">{{ errorMessage }}</div>
+      }
+
+      <form [formGroup]="productoForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="nombre">Nombre <span class="required">*</span></label>
+            <input
+              id="nombre"
+              type="text"
+              formControlName="nombre"
+              [class.input-error]="nombreControl.invalid && nombreControl.touched"
+              placeholder="Nombre del producto"
+            />
+            @if (nombreControl.invalid && nombreControl.touched) {
+              <span class="error-msg">
+                @if (nombreControl.hasError('required')) { El nombre es obligatorio. }
+                @if (nombreControl.hasError('minlength')) { Mínimo 2 caracteres. }
+                @if (nombreControl.hasError('maxlength')) { Máximo 150 caracteres. }
+              </span>
+            }
+          </div>
+
+          <div class="form-group full-width">
+            <label for="descripcion">Descripción</label>
+            <textarea
+              id="descripcion"
+              formControlName="descripcion"
+              rows="3"
+              placeholder="Descripción del producto (opcional)"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="precio">Precio (USD) <span class="required">*</span></label>
+            <input
+              id="precio"
+              type="number"
+              formControlName="precio"
+              [class.input-error]="precioControl.invalid && precioControl.touched"
+              placeholder="0.00"
+              step="0.01"
+              min="0"
+            />
+            @if (precioControl.invalid && precioControl.touched) {
+              <span class="error-msg">
+                @if (precioControl.hasError('required')) { El precio es obligatorio. }
+                @if (precioControl.hasError('min')) { El precio no puede ser negativo. }
+              </span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="stock">Stock <span class="required">*</span></label>
+            <input
+              id="stock"
+              type="number"
+              formControlName="stock"
+              [class.input-error]="stockControl.invalid && stockControl.touched"
+              placeholder="0"
+              min="0"
+            />
+            @if (stockControl.invalid && stockControl.touched) {
+              <span class="error-msg">
+                @if (stockControl.hasError('required')) { El stock es obligatorio. }
+                @if (stockControl.hasError('min')) { El stock no puede ser negativo. }
+              </span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label for="tipoProductoId">Tipo de Producto <span class="required">*</span></label>
+            <select
+              id="tipoProductoId"
+              formControlName="tipoProductoId"
+              [class.input-error]="tipoControl.invalid && tipoControl.touched"
+            >
+              <option [value]="null">Seleccione un tipo</option>
+              @for (tipo of tiposProducto; track tipo.id) {
+                <option [value]="tipo.id">{{ tipo.nombre }}</option>
+              }
+            </select>
+            @if (tipoControl.invalid && tipoControl.touched) {
+              <span class="error-msg">Seleccione un tipo de producto.</span>
+            }
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <a routerLink="/products" class="btn-secondary">Cancelar</a>
+          <button type="submit" [disabled]="loading" class="btn-primary">
+            {{ loading ? 'Guardando...' : (isEditMode ? 'Actualizar' : 'Crear Producto') }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>
