@@ -22,6 +22,12 @@ export interface CurrentUser {
   rol: string;
 }
 
+export interface RegisterRequest {
+  nombre: string;
+  email: string;
+  password: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly http = inject(HttpClient);
@@ -40,6 +46,10 @@ export class AuthService {
         }));
       })
     );
+  }
+
+  register(data: RegisterRequest): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/auth/register`, data);
   }
 
   logout(): void {

@@ -67,21 +67,3 @@ INSERT INTO tipo_producto (nombre) VALUES ('Alimento');
 INSERT INTO tipo_producto (nombre) VALUES ('Hogar');
 INSERT INTO tipo_producto (nombre) VALUES ('Otro');
 GO
-
-INSERT INTO usuarios (nombre, email, password)
-VALUES ('Administrador', 'admin@gmail.com',
-'$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy');
-
-
-INSERT INTO usuarios (nombre, email, password)
-VALUES ('Usuario Demo', 'user@gmail.com',
-'$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO1ohk7nNzm');
-GO
-
-INSERT INTO usuario_roles (usuario_id, rol_id)
-VALUES (1, 1), (1, 2);
-
-INSERT INTO usuario_roles (usuario_id, rol_id)
-VALUES (2, 2);
-GO
-

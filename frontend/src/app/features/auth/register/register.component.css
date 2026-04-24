@@ -1,4 +1,4 @@
-.login-container {
+.register-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@
   padding: 1rem;
 }
 
-.login-card {
+.register-card {
   background: white;
   border-radius: 16px;
   padding: 2.5rem;
@@ -15,19 +15,19 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-.login-header {
+.register-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.login-header h1 {
+.register-header h1 {
   font-size: 1.875rem;
   font-weight: 700;
   color: #1a1a2e;
   margin-bottom: 0.5rem;
 }
 
-.login-header p {
+.register-header p {
   color: #6b7280;
   font-size: 0.875rem;
 }
@@ -80,6 +80,16 @@
   margin-bottom: 1.25rem;
 }
 
+.alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
 .btn-primary {
   width: 100%;
   padding: 0.75rem;
@@ -103,19 +113,19 @@
   cursor: not-allowed;
 }
 
-.login-footer {
+.register-footer {
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.875rem;
   color: #6b7280;
 }
 
-.login-footer a {
+.register-footer a {
   color: #667eea;
   font-weight: 600;
   text-decoration: none;
 }
 
-.login-footer a:hover {
+.register-footer a:hover {
   text-decoration: underline;
 }
